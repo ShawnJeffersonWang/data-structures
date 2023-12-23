@@ -89,7 +89,7 @@ public class TestDynamicArray {
 //        System.out.println("-----------------------");
         assertEquals(3, removed);
         // 前提是都得实现Iterable接口，后续要习惯用断言而不是打印
-        assertIterableEquals(List.of(1, 2, 3, 4, 5), dynamicArray);
+        assertIterableEquals(List.of(1, 2, 4, 5), dynamicArray);
 //        dynamicArray.stream().forEach(System.out::println);
     }
 
