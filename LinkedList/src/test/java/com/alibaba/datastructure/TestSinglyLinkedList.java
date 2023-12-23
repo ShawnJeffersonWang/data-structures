@@ -10,6 +10,16 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestSinglyLinkedList {
 
+
+    private SinglyLinkedList getLinkedList() {
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        return list;
+    }
+
     @Test
     @DisplayName("测试 addFirst")
     public void test1() {
@@ -133,5 +143,14 @@ public class TestSinglyLinkedList {
 
         list3.remove(2);
         assertIterableEquals(List.of(1, 2, 4), list3);
+    }
+
+    @Test
+    @DisplayName("测试递归遍历")
+    public void test7() {
+        SinglyLinkedList list = getLinkedList();
+        list.loop3(value -> System.out.println(value)
+                , value -> System.out.println(value)
+        );
     }
 }

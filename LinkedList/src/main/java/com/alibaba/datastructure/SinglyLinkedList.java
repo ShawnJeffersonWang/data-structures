@@ -82,6 +82,23 @@ public class SinglyLinkedList implements Iterable<Integer> {
         }
     }
 
+    public void loop3(Consumer<Integer> before, Consumer<Integer> after) {
+        recursion(head, before, after);
+    }
+
+    // 针对某个结点要进行的操作
+    private void recursion(Node cur, Consumer<Integer> before, Consumer<Integer> after) {
+        if (cur == null) {
+            return;
+        }
+//        System.out.println("before:" + cur.value);
+        before.accept(cur.value);
+        // 逆序
+        recursion(cur.next, before, after);
+//        System.out.println("after:" + cur.value);
+        after.accept(cur.value);
+    }
+
 //    private Node findLast() {
 //        if (head == null) {
 //            return null;
