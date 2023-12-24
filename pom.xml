@@ -12,6 +12,7 @@
         <module>DynamicArray</module>
         <module>LinkedList</module>
         <module>Queue</module>
+        <module>Stack</module>
     </modules>
 
     <properties>
