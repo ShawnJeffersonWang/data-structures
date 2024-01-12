@@ -105,4 +105,25 @@ public class BlockingQueue1<E> implements BlockingQueue<E> {
     public String toString() {
         return Arrays.toString(array);
     }
+
+    public static void main(String[] args) throws InterruptedException {
+        BlockingQueue<String> queue = new BlockingQueue1<>(3);
+        queue.offer("任务1");
+
+        new Thread(() -> {
+            try {
+                queue.offer("任务2");
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }, "offer").start();
+
+        new Thread(() -> {
+            try {
+                System.out.println(queue.poll());
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }, "poll").start();
+    }
 }
