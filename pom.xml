@@ -13,6 +13,7 @@
         <module>LinkedList</module>
         <module>Queue</module>
         <module>Stack</module>
+        <module>Heap</module>
     </modules>
 
     <properties>
