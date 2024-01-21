@@ -29,19 +29,38 @@ public class MaxHeap {
     }
 
     public int poll(int index) {
-        return 0;
+        int top = array[0];
+        swap(0, size - 1);
+        size--;
+        down(0);
+        return top;
     }
 
     public int peek() {
-        return 0;
+        return array[0];
     }
 
     public boolean offer(int offered) {
-        return false;
+        if (size == array.length) {
+            return false;
+        }
+        up(offered);
+        size++;
+        return true;
     }
 
     private void up(int offered) {
-
+        int child = size;
+        while (child > 0) {
+            int parent = (child - 1) / 2;
+            if (offered > array[parent]) {
+                array[child] = array[parent];
+            } else {
+                break;
+            }
+            child = parent;
+        }
+        array[child] = offered;
     }
 
     // 将parent索引处的元素下潜：与两个孩子较大者交换，直到没孩子或孩子没它大
