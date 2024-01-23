@@ -90,7 +90,13 @@ public class MaxHeap {
 
     public static void main(String[] args) {
         int[] array = {1, 2, 3, 4, 5, 6, 7};
-        MaxHeap maxHeap = new MaxHeap(array);
-        System.out.println(Arrays.toString(maxHeap.array));
+        MaxHeap heap = new MaxHeap(array);
+        System.out.println(Arrays.toString(heap.array));
+
+        while (heap.size > 1) {
+            heap.swap(0, heap.size - 1);
+            heap.size--;
+            heap.down(0);
+        }
     }
 }
