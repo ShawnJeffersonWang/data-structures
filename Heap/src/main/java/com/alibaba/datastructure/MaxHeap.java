@@ -98,5 +98,7 @@ public class MaxHeap {
             heap.size--;
             heap.down(0);
         }
+
+        System.out.println(Arrays.toString(heap.array));
     }
 }
