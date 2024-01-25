@@ -14,6 +14,7 @@
         <module>Queue</module>
         <module>Stack</module>
         <module>Heap</module>
+        <module>Stream</module>
     </modules>
 
     <properties>
