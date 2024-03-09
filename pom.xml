@@ -15,6 +15,7 @@
         <module>Stack</module>
         <module>Heap</module>
         <module>Stream</module>
+        <module>BinaryTree</module>
     </modules>
 
     <properties>
