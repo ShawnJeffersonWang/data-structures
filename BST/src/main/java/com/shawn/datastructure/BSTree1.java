@@ -1,7 +1,6 @@
 package com.shawn.datastructure;
 
-import java.util.Currency;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Binary Search Tree 二叉搜索树
@@ -236,59 +235,100 @@ public class BSTree1 {
 
     /**
      * 根据关键字删除
+     * 非递归形式-性能较高
      * Params: key - 关键字
      * Returns: 这删除关键字对应值
      */
+//    public Object delete(int key) {
+//        BSTNode p = root;
+//        BSTNode parent = null;
+//
+//        while (p != null) {
+//            if (key < p.key) {
+//                parent = p;
+//                p = p.left;
+//            } else if (key > p.key) {
+//                parent = p;
+//                p = p.right;
+//            } else {
+//                break;
+//            }
+//        }
+//
+//        if (p == null) {
+//            return null;
+//        }
+//
+//        // 删除操作 情况1 自动包含情况3
+//        if (p.left == null) {
+//            shift(parent, p, p.right);
+//        } else if (p.right == null) {
+//            // 情况2
+//            shift(parent, p, p.left);
+//        } else {
+//            // 情况4
+//            // 4.1 被删除节点找后继
+//            BSTNode s = p.right;
+//            // 后继父亲
+//            BSTNode sParent = p;
+//            while (s.left != null) {
+//                sParent = s;
+//                s = s.left;
+//            }
+//
+//            // 后继节点即为s
+//            // 不相邻
+//            if (sParent != p) {
+//                // 4.2 删除节点和后继节点不相邻，处理后继的后事
+//                // 不可能有左孩子
+//                shift(sParent, s, s.right);
+//                s.right = p.right;
+//            }
+//            // 4.3 后继取代被删除节点
+//            shift(parent, p, s);
+//            s.left = p.left;
+//        }
+//        return p.value;
+//    }
     public Object delete(int key) {
-        BSTNode p = root;
-        BSTNode parent = null;
+        // 保存被删除节点的值
+        ArrayList<Object> result = new ArrayList<>();
+        root = doDelete(root, key, result);
+        return result.isEmpty() ? null : result.get(0);
+    }
 
-        while (p != null) {
-            if (key < p.key) {
-                parent = p;
-                p = p.left;
-            } else if (key > p.key) {
-                parent = p;
-                p = p.right;
-            } else {
-                break;
-            }
-        }
-
-        if (p == null) {
+    /*
+        node 起点
+        返回值 删剩下的孩子(找到) 或null(没找到)
+     */
+    private BSTNode doDelete(BSTNode node, int key, ArrayList<Object> result) {
+        if (node == null) {
             return null;
         }
-
-        // 删除操作 情况1 自动包含情况3
-        if (p.left == null) {
-            shift(parent, p, p.right);
-        } else if (p.right == null) {
-            // 情况2
-            shift(parent, p, p.left);
-        } else {
-            // 情况4
-            // 4.1 被删除节点找后继
-            BSTNode s = p.right;
-            // 后继父亲
-            BSTNode sParent = p;
-            while (s.left != null) {
-                sParent = s;
-                s = s.left;
-            }
-
-            // 后继节点即为s
-            // 不相邻
-            if (sParent != p) {
-                // 4.2 删除节点和后继节点不相邻，处理后继的后事
-                // 不可能有左孩子
-                shift(sParent, s, s.right);
-                s.right = p.right;
-            }
-            // 4.3 后继取代被删除节点
-            shift(parent, p, s);
-            s.left = p.left;
+        if (key < node.key) {
+            node.left = doDelete(node.left, key, result);
+            return node;
+        } else if (key > node.key) {
+            node.right = doDelete(node.right, key, result);
+            return node;
         }
-        return p.value;
+        result.add(node.value);
+        // 情况1 - 只有右孩子
+        if (node.left == null) {
+            return node.right;
+        }
+        // 情况2 - 只有左孩子
+        if (node.right == null) {
+            return node.left;
+        }
+        // 情况3 - 有两个孩子
+        BSTNode s = node.right;
+        while (s.left != null) {
+            s = s.left;
+        }
+        s.right = doDelete(node.right, s.key, result);
+        s.left = node.left;
+        return s;
     }
 
     /**
@@ -305,5 +345,75 @@ public class BSTree1 {
         } else {
             parent.right = child;
         }
+    }
+
+    // 找 < key 的所有value
+    public List<Object> less(int key) {
+        ArrayList<Object> result = new ArrayList<>();
+        BSTNode p = root;
+        LinkedList<BSTNode> stack = new LinkedList<>();
+        while (p != null || !stack.isEmpty()) {
+            if (p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                BSTNode pop = stack.pop();
+                // 处理值
+                if (pop.key < key) {
+                    result.add(pop.value);
+                } else {
+                    break;
+                }
+                p = pop.right;
+            }
+        }
+        return result;
+    }
+
+    // 找 > key 的所有value
+    // 使用反向中序遍历 Reverse in-order, RNL
+    public List<Object> greater(int key) {
+        ArrayList<Object> result = new ArrayList<>();
+        BSTNode p = root;
+        LinkedList<BSTNode> stack = new LinkedList<>();
+        while (p != null || !stack.isEmpty()) {
+            if (p != null) {
+                stack.push(p);
+                p = p.right;
+            } else {
+                BSTNode pop = stack.pop();
+//                System.out.print(pop.value + "\t");
+                if (pop.key > key) {
+                    result.add(pop.value);
+                } else {
+                    break;
+                }
+                p = pop.left;
+            }
+        }
+        return result;
+    }
+
+    // 找 >= key1 且 <= key2 的所有值
+    public List<Object> between(int key1, int key2) {
+        ArrayList<Object> result = new ArrayList<>();
+        BSTNode p = root;
+        LinkedList<BSTNode> stack = new LinkedList<>();
+        while (p != null || !stack.isEmpty()) {
+            if (p != null) {
+                stack.push(p);
+                p = p.left;
+            } else {
+                BSTNode pop = stack.pop();
+                // 处理值
+                if (pop.key >= key1 && pop.key <= key2) {
+                    result.add(pop.value);
+                } else if (pop.key > key2) {
+                    break;
+                }
+                p = pop.right;
+            }
+        }
+        return result;
     }
 }
