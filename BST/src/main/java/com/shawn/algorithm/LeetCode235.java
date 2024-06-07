@@ -1,6 +1,5 @@
 package com.shawn.algorithm;
 
-import java.sql.SQLOutput;
 
 /**
  * 求二叉搜索树最近公共祖先(祖先也包括自己)
