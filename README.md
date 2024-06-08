@@ -5,17 +5,17 @@ This repository contains implementations of various data structures and algorith
 ## Table of Contents
 
 1. [Basic Data Structures](#basic-data-structures)
-   - [ArrayList](#DynamicArray)
+   - [ArrayList](#ArrayList)
    - [LinkedList](#LinkedList)
    - [Queue](#Queue)
    - [Stack](#Stack)
    - [Binary Search Tree (BST)](#BST)
-   - [Binary Tree](#BinaryTree)
+   - [Binary Tree](#Binary-Search-Tree)
 
 2. [Intermediate Data Structures](#intermediate-data-structures)
    - [Heap](#Heap)
-   - [PriorityQueue](#Queue)
-   - [BlockingQueue](#Queue)
+   - [PriorityQueue](#PriorityQueue)
+   - [BlockingQueue](#BlockingQueue)
    - [Deque (Double-Ended Queue)](#deque-double-ended-queue)
 
 3. [Advanced Data Structures](#advanced-data-structures)
