@@ -18,6 +18,7 @@
         <module>BinaryTree</module>
         <module>BST</module>
         <module>Graph</module>
+        <module>BTree</module>
     </modules>
 
     <properties>

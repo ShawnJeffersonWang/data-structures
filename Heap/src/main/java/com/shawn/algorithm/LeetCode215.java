@@ -1,6 +1,6 @@
 package com.shawn.algorithm;
 
-import com.alibaba.datastructure.MinHeap;
+import com.shawn.datastructure.MinHeap;
 
 public class LeetCode215 {
 

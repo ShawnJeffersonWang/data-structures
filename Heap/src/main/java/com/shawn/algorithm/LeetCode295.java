@@ -1,6 +1,6 @@
 package com.shawn.algorithm;
 
-import com.alibaba.datastructure.Heap;
+import com.shawn.datastructure.Heap;
 
 public class LeetCode295 {
 

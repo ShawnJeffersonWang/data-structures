@@ -2,8 +2,6 @@ package com.shawn.datastructure;
 
 import java.util.LinkedList;
 
-import com.alibaba.datastructure.LinkedListStack;
-
 public class TreeTraversal {
 
     public static void main(String[] args) throws InterruptedException {
