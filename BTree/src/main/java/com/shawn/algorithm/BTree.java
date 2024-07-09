@@ -1,5 +1,6 @@
 package com.shawn.algorithm;
 
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class BTree {
@@ -217,7 +218,97 @@ public class BTree {
     }
 
     private void doRemove(Node parent, Node node, int index, int key) {
+        int i = 0;
+        while (i < node.keyNumber) {
+            if (node.keys[i] >= key) {
+                break;
+            }
+            i++;
+        }
+        // i 找到：代表待删除 key 的索引
+        // i 没找到：代表到第i个孩子继续查找
+        if (node.leaf) {
+            // case1
+            if (!found(node, key, i)) {
+                return;
+            } else {
+                // case2 删完不要 return 防止小于下限
+                node.removeKey(i);
+            }
+        } else {
+            // case3
+            if (!found(node, key, i)) {
+                doRemove(node, node.children[i], i, key);
+            } else {
+                // case4
+                // 1. 找到后继 key
+                Node s = node.children[i + 1];
+                while (!s.leaf) {
+                    s = s.children[0];
+                }
+                int skey = s.keys[0];
+                // 2. 替换待删除 key
+                node.keys[i] = skey;
+                // 3. 删除后继 key
+                doRemove(node, node.children[i + 1], i + 1, skey);
+            }
+        }
+        if (node.keyNumber < MIN_KEY_NUMBER) {
+            // 调整平衡 case 5 case 6
+            balance(parent, node, index);
+        }
+    }
 
+    private void balance(Node parent, Node x, int i) {
+        // case 6 根节点
+        if (x == root) {
+            if (root.keyNumber == 0 && root.children[0] != null) {
+                root = root.children[0];
+            }
+            return;
+        }
+        Node left = parent.childLeftSibling(i);
+        Node right = parent.childRightSibling(i);
+        if (left != null && left.keyNumber > MIN_KEY_NUMBER) {
+            // case 5-1 左边富裕，右旋
+            // a) 父节点中前驱key旋转下来
+            x.insertKey(parent.keys[i - 1], 0);
+            if (!left.leaf) {
+                // b) left中最大的孩子换爹
+                x.insertChild(left.removeRightmostChild(), 0);
+            }
+            // c) left中最大的key旋转上去
+            parent.keys[i - 1] = left.removeRightmostKey();
+            return;
+        }
+        if (right != null && right.keyNumber > MIN_KEY_NUMBER) {
+            // case 5-2 右边富裕，左旋
+            // a) 父节点中后继key旋转下来
+            x.insertKey(parent.keys[i], x.keyNumber);
+            // b) right中最小的孩子换爹
+            if (!right.leaf) {
+                x.insertChild(right.removeLeftmostChild(), x.keyNumber + 1);
+            }
+            // c) right中最小的key旋转上去
+            parent.keys[i] = right.removeLeftmostKey();
+            return;
+        }
+        // case 5-3 两边都不够借，向左合并
+        if (left != null) {
+            // 向左兄弟合并
+            parent.removeChild(i);
+            left.insertKey(parent.removeKey(i - 1), left.keyNumber);
+            x.moveToTarget(left);
+        } else {
+            // 向自己合并
+            parent.removeChild(i + 1);
+            x.insertKey(parent.removeKey(i), x.keyNumber);
+            right.moveToTarget(x);
+        }
+    }
+
+    private boolean found(Node node, int key, int i) {
+        return i < node.keyNumber && node.keys[i] == key;
     }
 
     public void travel() {
