@@ -1,25 +1,26 @@
 package com.shawn.algorithm;
 
-import java.nio.file.Paths;
 import java.util.Arrays;
 
 public class BTree {
 
     static class Node {
-        // 关键字
+        // 关键字 （b🌲树结点可以有多个key）
         int[] keys;
         // 孩子
         Node[] children;
-        // 有效关键字数目
+        // 有效关键字数目, 使用集合的话，不用记录有效关键字数目
         int keyNumber;
         // 是否是叶子节点
         boolean leaf = true;
-        // 最小度数
+        // 最小度数 (最小孩子数)
         int t;
 
+        // t>=2
         public Node(int t) {
             // t>=2
             this.t = t;
+            // 孩子数比关键字数多1
             this.children = new Node[2 * t];
             this.keys = new int[2 * t - 1];
         }
@@ -33,6 +34,11 @@ public class BTree {
             return Arrays.toString(Arrays.copyOfRange(keys, 0, keyNumber));
         }
 
+        /*
+                                              5 10 15 20 25
+                        /       |             |           |             |               \
+                    1 2 3 4   6 7 8 9   11 12 13 14    16 17 18 19      21 22 23 24     26 27 28 29 30
+         */
         // 多路查找
         Node get(int key) {
             int i = 0;
@@ -140,7 +146,9 @@ public class BTree {
     public BTree(int t) {
         this.t = t;
         root = new Node(t);
+        // keyNumber是孩子数减1 而孩子最大数是2t
         MAX_KEY_NUMBER = 2 * t - 1;
+        // 孩子最小数是t
         MIN_KEY_NUMBER = t - 1;
     }
 

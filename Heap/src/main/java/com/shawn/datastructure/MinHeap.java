@@ -1,8 +1,5 @@
 package com.shawn.datastructure;
 
-import java.util.Arrays;
-import java.util.PrimitiveIterator;
-
 public class MinHeap {
 
     int[] array;

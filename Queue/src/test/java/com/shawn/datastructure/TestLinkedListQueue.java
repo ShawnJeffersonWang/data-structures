@@ -3,7 +3,7 @@ package com.shawn.datastructure;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-// 使用import static语句后，可以直接访问被导入类的静态成员，而无需使用类名。
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestLinkedListQueue {

@@ -2,7 +2,6 @@ package com.shawn.algorithm;
 
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -38,8 +37,8 @@ public class TestExpressionTree {
         if (node == null) {
             return;
         }
-        post(node.left,result);
-        post(node.right,result);
+        post(node.left, result);
+        post(node.right, result);
         result.add(node.val);
     }
 }

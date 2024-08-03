@@ -1,6 +1,6 @@
 package com.shawn.algorithm;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class t3508 {
     int n, m;

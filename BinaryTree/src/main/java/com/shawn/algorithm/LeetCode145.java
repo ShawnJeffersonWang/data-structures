@@ -1,7 +1,6 @@
 package com.shawn.algorithm;
 
 import com.shawn.datastructure.TreeNode;
-import com.shawn.datastructure.TreeTraversal;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

@@ -81,7 +81,7 @@ public class LinkedListQueue<E> implements Queue<E>, Iterable<E> {
 
     @Override
     public boolean isFull() {
-        return size==capacity;
+        return size == capacity;
     }
 
     @Override

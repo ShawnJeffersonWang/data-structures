@@ -38,8 +38,8 @@ public class LeetCode295 {
         }
     }
 
-    private Heap left = new Heap(10,true);
-    private Heap right = new Heap(10,false);
+    private Heap left = new Heap(10, true);
+    private Heap right = new Heap(10, false);
 
     public static void main(String[] args) {
         LeetCode295 test = new LeetCode295();

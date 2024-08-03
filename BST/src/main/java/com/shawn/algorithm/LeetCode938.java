@@ -1,7 +1,5 @@
 package com.shawn.algorithm;
 
-import java.util.LinkedList;
-
 /**
  * 求范围和
  */

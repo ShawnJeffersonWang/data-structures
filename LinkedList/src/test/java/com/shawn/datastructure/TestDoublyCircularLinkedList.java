@@ -6,7 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestDoublyCircularLinkedList {
 
@@ -49,18 +50,18 @@ public class TestDoublyCircularLinkedList {
     @Test
     @DisplayName("测试 removeLast")
     public void test3() {
-        DoublyCircularLinkedList list=getList();
+        DoublyCircularLinkedList list = getList();
         list.removeLast();
-        assertIterableEquals(List.of(1,2,3,4),list);
+        assertIterableEquals(List.of(1, 2, 3, 4), list);
         list.removeLast();
-        assertIterableEquals(List.of(1,2,3),list);
+        assertIterableEquals(List.of(1, 2, 3), list);
         list.removeLast();
-        assertIterableEquals(List.of(1,2),list);
+        assertIterableEquals(List.of(1, 2), list);
         list.removeLast();
-        assertIterableEquals(List.of(1),list);
+        assertIterableEquals(List.of(1), list);
         list.removeLast();
-        assertIterableEquals(List.of(),list);
-        assertThrows(IllegalArgumentException.class,list::removeLast);
+        assertIterableEquals(List.of(), list);
+        assertThrows(IllegalArgumentException.class, list::removeLast);
 
     }
 

@@ -20,7 +20,7 @@ public class StreamDemo8 {
         }).forEach(s -> System.out.println(s));
 
         list.stream()
-                .map(s->Integer.parseInt(s.split("-")[1]))
-                .forEach(s-> System.out.println(s));
+                .map(s -> Integer.parseInt(s.split("-")[1]))
+                .forEach(s -> System.out.println(s));
     }
 }

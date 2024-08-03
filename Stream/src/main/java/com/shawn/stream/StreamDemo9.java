@@ -10,9 +10,9 @@ public class StreamDemo9 {
 
     public static void main(String[] args) {
 
-        ArrayList<String> list=new ArrayList<>();
-        Collections.addAll(list,"a","b","c","d","e");
-        
+        ArrayList<String> list = new ArrayList<>();
+        Collections.addAll(list, "a", "b", "c", "d", "e");
+
         list.stream().forEach(new Consumer<String>() {
             @Override
             public void accept(String s) {

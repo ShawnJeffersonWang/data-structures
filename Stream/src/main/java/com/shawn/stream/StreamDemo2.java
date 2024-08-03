@@ -15,6 +15,6 @@ public class StreamDemo2 {
         // 第一种获取stream流
         hm.keySet().stream().forEach(s -> System.out.println(s));
         // 第二种方法获取stream流
-        hm.entrySet().stream().forEach(s-> System.out.println(s));
+        hm.entrySet().stream().forEach(s -> System.out.println(s));
     }
 }

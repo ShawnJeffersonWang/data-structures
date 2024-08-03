@@ -1,9 +1,7 @@
 package com.shawn.algorithm;
 
 
-import javax.swing.plaf.basic.BasicToolBarSeparatorUI;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * 根据后缀表达式构造表达式树

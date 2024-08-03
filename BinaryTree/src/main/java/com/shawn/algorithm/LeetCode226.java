@@ -2,8 +2,6 @@ package com.shawn.algorithm;
 
 import com.shawn.datastructure.TreeNode;
 
-import java.awt.image.renderable.RenderableImage;
-
 /**
  * 翻转二叉树
  */

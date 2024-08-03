@@ -1,12 +1,10 @@
 package com.shawn.algorithm;
 
 import com.shawn.datastructure.TreeNode;
-import com.shawn.datastructure.TreeTraversal;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
 public class LeetCode94 {
 

@@ -31,17 +31,17 @@ public class DFS {
     }
 
     // 非递归
-    private static void dfs2(Vertex v){
+    private static void dfs2(Vertex v) {
         // 先自定义一个栈
-        LinkedList<Vertex> stack=new LinkedList<>();
+        LinkedList<Vertex> stack = new LinkedList<>();
         stack.push(v);
-        while(!stack.isEmpty()){
+        while (!stack.isEmpty()) {
             Vertex pop = stack.pop();
-            pop.visited=true;
+            pop.visited = true;
             System.out.println(pop.name);
             // 看相邻的顶点
             for (Edge edge : pop.edges) {
-                if(!edge.linked.visited){
+                if (!edge.linked.visited) {
                     stack.push(edge.linked);
                 }
             }

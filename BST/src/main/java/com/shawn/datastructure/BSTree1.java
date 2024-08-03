@@ -1,6 +1,8 @@
 package com.shawn.datastructure;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Binary Search Tree 二叉搜索树

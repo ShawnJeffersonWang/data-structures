@@ -8,9 +8,9 @@ public class StreamDemo3 {
 
         int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
-        String[] arr2={"a","b","c"};
+        String[] arr2 = {"a", "b", "c"};
         Arrays.stream(arr).forEach(s -> System.out.println(s));
 
-        Arrays.stream(arr2).forEach(s-> System.out.println(s));
+        Arrays.stream(arr2).forEach(s -> System.out.println(s));
     }
 }
