@@ -1,6 +1,7 @@
 package com.shawn.datastructure;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -62,6 +63,7 @@ public class FloydWarshall {
     }
 
     static void floydWarshall(List<Vertex> graph) {
+        // floydWarshall 算法可以处理负边，但不能处理负环
         int size = graph.size();
         int[][] dist = new int[size][size];
         Vertex[][] prev = new Vertex[size][size];
@@ -105,6 +107,23 @@ public class FloydWarshall {
 //            print(dist);
         }
         print(prev);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                path(prev, graph, i, j);
+            }
+        }
+    }
+
+    static void path(Vertex[][] prev, List<Vertex> graph, int i, int j) {
+        LinkedList<String> stack = new LinkedList<>();
+        System.out.print("[" + graph.get(i).name + "," + graph.get(j).name + "] ");
+        stack.push(graph.get(j).name);
+        while (i != j) {
+            Vertex p = prev[i][j];
+            stack.push(p.name);
+            j = graph.indexOf(p);
+        }
+        System.out.println(stack);
     }
 
     static void print(int[][] dist) {
@@ -147,6 +166,6 @@ public class FloydWarshall {
         v3  1   3   -1  1
         v4  ∞   ∞   ∞   0
 
-
+        对角线上有小于 0 的就表示出现了负环
      */
 }

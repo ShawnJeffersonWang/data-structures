@@ -23,7 +23,7 @@ public class BellmanFord {
         bellmanFord(graph, v1);
         // 负边情况
 
-        // 负环情况
+        // 负环情况 (负环：1. 路径构成一个环 2. 环中所有路径权重加起来为负数)
     }
 
     private static void bellmanFord(List<Vertex> graph, Vertex source) {
