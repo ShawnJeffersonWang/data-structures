@@ -19,6 +19,7 @@
         <module>BST</module>
         <module>Graph</module>
         <module>BTree</module>
+        <module>AVLTree</module>
     </modules>
 
     <properties>
